@@ -2,9 +2,9 @@ service: myserverlessproject
 
 provider:
     name: aws
-    runtime: nodejs10.x
-    profile: serverlessUser
-    region: eu-west-1
+    runtime: nodejs18.x
+    profile: arai_toshiaki
+    region: ap-northeast-1
 
 plugins:
     - serverless-s3-sync
@@ -16,7 +16,7 @@ package:
 custom:
     tableName: player-points
     s3Sync:
-        - bucketName: myserverlessprojectuploadbucket-12312
+        - bucketName: myserverlessprojectuploadbucket-arai0108
           localDir: UploadData
 
 functions:
@@ -24,16 +24,16 @@ functions:
         handler: lambdas/getUser.handler
         events:
             - http:
-                  path: get-user/{ID}
-                  method: GET
-                  cors: true
+                path: get-user/{ID}
+                method: GET
+                cors: true
 
 resources:
     Resources:
         DemoBucketUpload:
             Type: AWS::S3::Bucket
             Properties:
-                BucketName: myserverlessprojectuploadbucket-12312
+                BucketName: myserverlessprojectuploadbucket-arai0108
         MyDynamoDbTable:
             Type: AWS::DynamoDB::Table
             Properties:

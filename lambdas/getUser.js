@@ -4,23 +4,23 @@ exports.handler = async event => {
     console.log('event', event);
 
     if (!event.pathParameters || !event.pathParameters.ID) {
-        // failed without an ID
-        return Responses._400({ message: 'missing the ID from the path' });
+        // IDがない場合
+        return Responses._400({ message: 'パスにIDがありません' });
     }
 
     let ID = event.pathParameters.ID;
 
     if (data[ID]) {
-        // return the data
+        // データを返します
         return Responses._200(data[ID]);
     }
 
-    //failed as ID not in the data
-    return Responses._400({ message: 'no ID in data' });
+    //データにIDがない場合
+    return Responses._400({ message: 'データにIDがありません' });
 };
 
 const data = {
-    1234: { name: 'Anna Jones', age: 25, job: 'journalist' },
-    7893: { name: 'Chris Smith', age: 52, job: 'teacher' },
-    5132: { name: 'Tom Hague', age: 23, job: 'plasterer' },
+    1234: { name: '田中', age: 25, job: 'エンジニア' },
+    7893: { name: '木下', age: 52, job: '教師' },
+    5132: { name: '安藤', age: 23, job: '芸術家' },
 };
